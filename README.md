@@ -41,11 +41,16 @@ To set up and run the BookStore project on your local machine, follow these step
    ```bash
    dotnet ef database update
    ```
+4. Run the application:
+   ```bash
+   update-database
+   ```
 
 4. Run the application:
    ```bash
    dotnet run
    ```
+   
 
 5. Open your web browser and navigate to `http://localhost:5185` to access the BookStore application.
 
