@@ -1,0 +1,38 @@
+﻿@model IEnumerable<BookStore.Models.Publisher>
+@{
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-dark" href="/Publishers/Create">+ Add more</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Publishers</h3>
+
+            <table class="table table-stripped table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>Publisher Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.PublisherName</td>
+                            <td>
+                                <a class="btn btn-success" href="/Publishers/Edit/@item.Id"> <i class="bi bi-pen"></i> Edit</a> |
+                                <a asp-action="Delete"  asp-route-id="@item.Id" class="btn btn-danger" onclick="return window.confirm('Are you sure?')"><i class="bi bi-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

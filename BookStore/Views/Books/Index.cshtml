@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+@{
+}
+
+<div class="container pt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-dark" href="/Books/Create">+ Add more</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Books</h3>
+            <div class="form-group m-2">
+                <div class="form-group">
+                    <label>Filter by Genre </label>
+                    <select name="GenreId" id="GenreId" asp-items="ViewBag.GenreId" class="form-select">
+                        <option value="">--select--</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Filter by Author </label>
+                    <select name="AuthorId" id="AuthorId" asp-items="ViewBag.AuthorId" class="form-select">
+                        <option value="">--select--</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table table-stripped table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Total Pages</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Genre.Name</td>
+                            <td>@item.TotalPages</td>
+                            <td>@item.Author.AuthorName</td>
+                            <td>@item.Publisher.PublisherName</td>
+                            <td>@item.Status.Name</td>
+                            <td>
+                                <a class="btn btn-success" href="/Books/Edit/@item.Id"><i class="bi bi-pen"></i> Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return window.confirm('Are you sure?')"><i class="bi bi-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#GenreId, #AuthorId").change(function () {
+            var GenreId = $("#GenreId").val();
+            var AuthorId = $("#AuthorId").val();
+            var url = `/Books/Index?genre=${GenreId}&author=${AuthorId}`;
+            location.href = url;
+        });
+    });
+
+</script>

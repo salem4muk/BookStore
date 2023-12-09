@@ -1,0 +1,47 @@
+﻿@model BookStore.Models.Genre
+@{
+}
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Create Genre</h3>
+            <form id="createGenreForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name">Genre Name *</label>
+                    <input type="text" class="form-control" id="Name" />
+                    <span class="text-danger" id="nameError"></span>
+                </div>
+                <div class="form-group pt-3">
+                    <button type="button" class="btn btn-dark" onclick="createGenre()"><i class="bi bi-save"></i> Save</button>
+                    <a href="/Genres/Index" class="btn btn-primary"> <i class="bi bi-list"></i>List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function createGenre() {
+        var name = $("#Name").val();
+
+        $.ajax({
+            url: '/api/GenresApi',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ Name: name }),
+            success: function (data) {
+                // Handle success, e.g., redirect to the genre details page
+                window.location.href = '/Genres/Index/';
+            },
+            error: function (xhr, status, error) {
+                // Handle error, display error message
+                var errorMessage = xhr.responseJSON ? xhr.responseJSON.title : 'An error occurred';
+                $("#nameError").text(errorMessage);
+            }
+        });
+    }
+</script>
+
+

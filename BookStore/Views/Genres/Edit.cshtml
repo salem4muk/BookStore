@@ -1,0 +1,68 @@
+﻿@model BookStore.Models.Genre
+@{
+}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Edit Genre</h3>
+            <form id="editGenreForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" id="Id" />
+                <div class="form-group">
+                    <label asp-for="Name">Genre Name *</label>
+                    <input type="text" class="form-control" id="Name" />
+                    <span class="text-danger" id="nameError"></span>
+                </div>
+                <div class="form-group pt-3">
+                    <button type="button" class="btn btn-dark" onclick="editGenre()"><i class="bi bi-save"></i> Save</button>
+                    <a href="/Genres/Index" class="btn btn-primary"> <i class="bi bi-list"></i>List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Load genre data for editing
+        var genreId = @ViewData["id"];
+        loadGenreData(genreId);
+    });
+
+    function loadGenreData(genreId) {
+        $.ajax({
+            url: '/api/GenresApi/' + genreId,
+            type: 'GET',
+            success: function (data) {
+                // Populate form fields with the retrieved genre data
+                $("#Id").val(data.id);
+                $("#Name").val(data.name);
+            },
+            error: function () {
+                // Handle error, display error message
+                console.log('Error loading genre data');
+            }
+        });
+    }
+
+    function editGenre() {
+        var id = $("#Id").val();
+        var name = $("#Name").val();
+
+        $.ajax({
+            url: '/api/GenresApi/' + id,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({ Id: id, Name: name }),
+            success: function () {
+                // Handle success, e.g., redirect to the genre details page
+                window.location.href = '/Genres/Index';
+            },
+            error: function (xhr, status, error) {
+                // Handle error, display error message
+                var errorMessage = xhr.responseJSON ? xhr.responseJSON.title : 'An error occurred';
+                $("#nameError").text(errorMessage);
+            }
+        });
+    }
+</script>
