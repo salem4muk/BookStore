@@ -46,7 +46,7 @@ To set up and run the BookStore project on your local machine, follow these step
    update-database
    ```
 
-4. Run the application:
+5. Run the application:
    ```bash
    dotnet run
    ```
