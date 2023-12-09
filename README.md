@@ -11,11 +11,8 @@ Welcome to the BookStore project! This project is developed as part of the requi
 - [License](#license)
 
 ## Features
-- **User Authentication:** Secure user authentication system for registered users.
 - **Book Management:** Add, edit, and delete books from the inventory.
 - **Search and Filters:** Easily search for books and apply filters to find specific genres, authors, or titles.
-- **Shopping Cart:** Users can add books to their shopping cart for a seamless shopping experience.
-- **Order History:** Track and view past orders and transactions.
 - **Responsive Design:** The application is designed to be accessible and functional on various devices.
 
 ## Technologies Used
@@ -50,14 +47,11 @@ To set up and run the BookStore project on your local machine, follow these step
    dotnet run
    ```
 
-5. Open your web browser and navigate to `http://localhost:5000` to access the BookStore application.
+5. Open your web browser and navigate to `http://localhost:5185` to access the BookStore application.
 
 ## Usage
-- **User Registration/Login:** Create a new account or log in if you are a returning user.
 - **Browse Books:** Explore the collection of books using search and filters.
-- **Add to Cart:** Select books and add them to your shopping cart.
-- **Checkout:** Complete the purchase by providing necessary details.
-- **View Order History:** Track your order history and view details of past transactions.
+- 
 
 ## Contributing
 Contributions are welcome! If you have ideas for new features, improvements, or bug fixes, please open an issue or submit a pull request. Follow the [Contributing Guidelines](CONTRIBUTING.md) for more details.
